@@ -1,0 +1,185 @@
+
+.container
+	position: relative
+	width: 100%
+	height: 100vh
+	min-height: 500px
+	background-color: #F5F7FA
+
+.chat
+	position: fixed
+	bottom: 0
+	right: 15px
+	width: 300px
+	border-radius: 5px 5px 0 0
+	overflow: hidden
+	transition: all 0.3s
+	font-size: 13px
+	border: 1px solid #4A89DC
+	&.open
+		box-shadow: 0 5px 10px 0 rgba(#ccc, .4)
+		.chat-close
+			&::before
+				transform: rotate(45deg)
+			&::after
+				transform: rotate(-45deg)
+			
+	form
+		position: absolute
+		bottom: 0
+		width: 100%
+		display: flex
+		height: 30px
+		input
+			flex: 1 1 auto
+			box-sizing: border-box
+			border: none
+			border-top: 1px solid #5D9CEC
+			padding: 5px
+			outline: none
+			resize: none
+		button
+			box-sizing: border-box
+			cursor: pointer
+			flex: 1 1 auto
+			height: auto
+			background-color: #5D9CEC
+			border: none
+			color: #fff
+			font-size: 12px
+			outline: none
+			text-transform: uppercase
+
+.chat-head
+	position: relative
+	background-color: #4A89DC
+	color: #fff
+	padding: 5px 10px
+	cursor: pointer
+	text-transform: uppercase
+	font-size: 16px
+	line-height: 1.5
+	height: 30px
+	span
+		font-size: 20px
+		animation: keyup 1s infinite linear
+		animation-delay: 0s
+		&:nth-child(2)
+			animation-delay: 0.2s
+		&:nth-child(3)
+			animation-delay: 0.2s
+	&:hover
+		.chat-close
+			opacity: 1
+
+.chat-close
+	position: absolute
+	width: 30px
+	height: 30px
+	top: 10px
+	right: 10px
+	opacity: .7
+	transition: all 0.3s
+	&::before, &::after
+		content: ""
+		position: absolute
+		top: 10px
+		width: 50%
+		height: 2px
+		background-color: #fff
+		left: 10px
+		transition: all 0.3s
+	&::before
+		transform: rotate(45deg) translate(3px, -3px)
+	&::after
+		transform: rotate(-45deg) translate(-4px, -4px)
+	
+
+@keyframes keyup
+	0%
+		opacity: 1
+		transform: scale(1)
+	50%
+		opacity: 0
+		transform: scale(0)
+	100%
+		opacity: 1
+		transform: sclae(1)
+
+.chat-content
+	min-height: 280px
+	max-height: 300px
+	overflow-y: scroll
+	background-color: #fff
+	padding: 10px 0 15px
+	margin-bottom: 30px
+	display: none
+
+.chat-messages
+	position: relative
+	width: 100%
+	height: 100%
+	padding: 0 10px
+	box-sizing: border-box
+	display: flex
+	flex-direction: column
+	.message
+		position: relative
+		max-width: 80%
+		line-height: 1.2
+		margin-bottom: 10px
+		padding: 3px
+		border: 1px solid rgba(#4A89DC, .3)
+		background-color: rgba(#4A89DC, .2)
+		border-radius: 5px
+		&::before
+			content: ""
+			position: absolute
+			bottom: -7px
+			left: -4px
+			border: 3px solid transparent
+			border-top: 5px solid rgba(#4A89DC, .3)
+			transform: rotate(30deg)
+		h4
+			margin: 0
+			text-transform: uppercase
+		p
+			margin: 0
+		.message__date
+			position: absolute
+			bottom: 0
+			right: -42px
+		&:nth-child(2n)
+			align-self: flex-end
+			text-align: right
+			border: 1px solid rgba(#4A89DC, .1)
+			background-color: rgba(#4A89DC, .05)
+			&::before
+				border-top: 5px solid rgba(#4A89DC, .1)
+				left: auto
+				bottom: -7px
+				right: -4px
+				transform: rotate(-30deg)
+			.message__date
+				left: -42px
+				right: auto
+		&.input
+			align-self: flex-end
+			text-align: left
+			width: 100%
+			border: 1px solid rgba(#4A89DC, 1)
+			background-color: rgba(#4A89DC, .9)
+			color: #fff
+			& + .message:first-child
+				align-self: flex-start
+			.message__date
+				top: 3px
+				right: 4px
+				left: auto
+			&::before
+				border-top: 5px solid rgba(#4A89DC, .4)
+				left: auto
+				bottom: 0 
+				right: -4px
+				transform: rotate(-30deg)
+
